@@ -1,0 +1,24 @@
+<h1>Listing slots</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Bookable</th>
+	<th>Start</th>
+	<th>End</th>
+  </tr>
+
+<% @slots.each do |slot| %>
+<% @bookable = Bookable.find(slot.bookable_id) %>
+  <tr>
+    <td><%= slot.name %></td>
+    <td><%= @bookable.user.name %></td>
+	<td><%= slot.pretty_start %></td>
+	<td><%= slot.pretty_end %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Slot', new_slot_path %>

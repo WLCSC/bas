@@ -1,0 +1,16 @@
+<h2>Appointments for <%= @user.name || @user.username %></h2>
+
+<div id="calendar" style="width: 700px; margin: auto;"></div>
+
+<% if @user.bookable %>
+<div id="slot_list">
+	<h2>Appointment Slots</h2>
+	<ul>
+		<% @user.bookable.slots.each do |slot| %>
+			<li><%= slot.name %>: <%= slot.pretty_start %> - <%= slot.pretty_end %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<%= calendar_script_tag "appointments/for/#{@user.id}.json" %>

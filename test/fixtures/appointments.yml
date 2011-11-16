@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  slot_id: 1
+  kind_id: 1
+  date: 2011-10-31
+
+two:
+  user_id: 1
+  slot_id: 1
+  kind_id: 1
+  date: 2011-10-31

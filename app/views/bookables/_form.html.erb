@@ -1,0 +1,25 @@
+<%= form_for(@bookable) do |f| %>
+  <% if @bookable.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bookable.errors.count, "error") %> prohibited this bookable from being saved:</h2>
+
+      <ul>
+      <% @bookable.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.select :user_id, User.all.map{|a| [a.name,a.id]} %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

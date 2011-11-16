@@ -1,0 +1,11 @@
+# Logfile created on 2011-10-31 09:45:37 -0400 by logger.rb/25413
+Testing user thompsonb
+Validated user thompsonb
+Testing user thompsonb
+Validated user thompsonb
+Testing user thompsonb
+Validated user thompsonb
+Testing user thompsonb
+Validated user thompsonb
+Testing user thompsonb
+Validated user thompsonb

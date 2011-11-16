@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>
+      <%= @user.name %> has scheduled an appointment with you at <%= @appointment.start.strftime("%A, %B %d %Y, %I:%M %P")%>.
+    </p>
+    <p>
+  <b>User:</b>
+  <%= @appointment.user.name %>
+</p>
+
+<p>
+  <b>With:</b>
+  <%= @bookable.user.name %>
+</p>
+
+<p>
+  <b>Kind:</b>
+  <%= @appointment.kind.name %>
+</p>
+
+<p>
+  <b>At:</b>
+  <%= @appointment.start.strftime("%A, %B %d %Y, %I:%M %P")%>
+</p>
+  </body>
+</html>

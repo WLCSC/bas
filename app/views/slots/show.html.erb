@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @slot.name %>
+</p>
+
+<p>
+  <b>Bookable:</b>
+  <%= @slot.bookable_id %>
+</p>
+
+<p>From <%= @slot.pretty_start %> to <%= @slot.pretty_end %>.</p>
+
+<%= link_to 'Back', slots_path %>

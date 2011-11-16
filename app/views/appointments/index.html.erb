@@ -1,0 +1,38 @@
+<h1><%= @bookable ? "Listing appointments for #{@bookable.user.name}" : "All Apointments"%></h1>
+<div id="calendar" style="width: 600px;"></div>
+<% if @bookable %>
+<div id="appt_form">
+<%= form_for(@appointment = Appointment.new) do |f| %>
+<h2>Sign up for an appointment with <%= @bookable.user.name %></h2>
+  <% if @appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% @appointment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :bookable_id, :value => @bookable.id %>
+  <div class="field">
+		<%= f.label :date %><br />
+		<%= select_date Date.today, :prefix => :date %>
+    </div>
+  <div class="field">
+    <%= f.label :time %><br />
+    <%= f.select :slot_id, @bookable.slots.map{|s| ["#{s.pretty_start} - #{s.pretty_end}", s.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :kind %><br />
+    <%= f.select :kind_id, Kind.all.map{|k| [k.name, k.id]} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
+<% end %>
+<%= calendar_script_tag (params[:bookable_id] ? "bookables/#{params[:bookable_id]}/events.json" : "appointments.json")%>

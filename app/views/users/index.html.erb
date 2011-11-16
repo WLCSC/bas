@@ -1,0 +1,21 @@
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Admin?</th>
+		<th>Bookable</th>
+	</tr>
+	
+	<% @users.each do |user| %>
+		<tr>
+			<td><%= link_to (user.name || user.username), user %></td>
+			<td><%= user.admin? ? "Yes" : "No" %></td>
+			<td><%= user.bookable ? "Yes - #{pluralize user.bookable.slots.count, 'slot'}" : ("No - " + link_to("Enable Booking",new_bookable_path + "?user_id=#{user.id}", :user_id => user.id)).html_safe %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= form_tag '/users/force' do %>
+	<p>Force create user: <br/>
+	<%= text_field_tag :username %></p>
+	<%= submit_tag "Create" %>
+<% end %>

@@ -1,0 +1,28 @@
+
+<div id="calendar" style="width: 500px;"></div>
+
+<p>
+  <b>User:</b>
+  <%= @appointment.user.name %>
+</p>
+
+<p>
+  <b>With:</b>
+  <%= @bookable.user.name %>
+</p>
+
+<p>
+  <b>Kind:</b>
+  <%= @appointment.kind.name %>
+</p>
+
+<p>
+  <b>At:</b>
+  <%= @appointment.start.strftime("%A, %B %d %Y, %I:%M %P")%>
+</p>
+
+
+<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
+<% if current_user.admin? || @appointment.user == current_user %> <%= link_to 'Cancel', appointment_path(@appointment), :method => :delete %> |<% end %>
+<%= link_to 'Back', appointments_path %>
+<%= calendar_script_tag "appointments/for/#{@bookable.user.id}.json?h=#{@appointment.id}" %>

@@ -1,0 +1,38 @@
+USER
+	username:string
+	name:string
+	administrator:boolean
+	
+	has_many :appointments
+	
+SLOT
+	name:string
+	bookable_id:integer
+	start_time:integer
+	end_time:integer
+	
+	has_many :appointments
+	belongs_to :bookable
+
+BOOKABLE
+
+	has_many :slots
+	has_many :appointments, :through => :slots
+
+APPOINTMENT
+	user_id:integer
+	slot_id:integer
+	kind_id:integer
+	start:datetime
+	end:datetime
+	
+	belongs_to :user
+	belongs_to :slot
+	has_one :bookable, :through => :slot
+	has_one :owner, :through => :bookable
+	belongs_to :kind
+
+KIND
+	name:string
+	
+	has_many :appointments

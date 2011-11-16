@@ -1,0 +1,33 @@
+<%= form_for(@slot) do |f| %>
+  <% if @slot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@slot.errors.count, "error") %> prohibited this slot from being saved:</h2>
+
+      <ul>
+      <% @slot.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :bookable %><br />
+    <%= f.select :bookable_id, Bookable.all.map{|b| [b.user.name, b.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %><br />
+    <%= select_time Time.now, :prefix => 'start'%>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br />
+    <%= select_time Time.now, :prefix => 'endt' %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
