@@ -28,6 +28,11 @@ class Bookable < ActiveRecord::Base
 		busy? time
 	end
 	
+	#loads in slot template from lib/scaffold.txt & generates slots for this bookable
+	#scaffold.txt should be filled with lines like this:
+	#[start] - [end]
+	#where start & end are the number of seconds past midnight that the slot starts/ends
+	#
 	def slot_scaffold
 		self.slots.each do |s|
 			s.delete

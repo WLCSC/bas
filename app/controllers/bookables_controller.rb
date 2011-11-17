@@ -83,17 +83,19 @@ class BookablesController < ApplicationController
     end
   end
   
+  
+  #spits out JSON of given bookable's events
   def events
 	@bookable = Bookable.find(params[:id])
 	@start = Time.at(params[:start].to_i) || nil
 	@end = Time.at(params[:end].to_i) || nil
 
     respond_to do |format|
-      format.html # show.html.erb
       format.json { render json: @bookable.events(@start,@end) }
     end
   end
   
+  #sends email from contact form
   def contact_email
 	t = User.find(params[:target])
 	ContactMailer.contact_form_email(current_user,t, params[:message]).deliver
@@ -101,6 +103,7 @@ class BookablesController < ApplicationController
 	redirect_to t.bookable
   end
   
+  #updates schedule with blocked out days
   def block
 	start = Date.new(params[:block]['begin(1i)'].to_i, params[:block]['begin(2i)'].to_i, params[:block]['begin(3i)'].to_i)
 	stop = Date.new(params[:block]['stop(1i)'].to_i, params[:block]['stop(2i)'].to_i, params[:block]['stop(3i)'].to_i)

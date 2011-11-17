@@ -17,6 +17,6 @@ class User < ActiveRecord::Base
 	end
 	
 	def email
-		"#{username}@wl.k12.in.us"
+		"#{username}@#{APP_CONFIG[:ldap_domain_email]}"
 	end
 end

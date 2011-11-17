@@ -1,4 +1,5 @@
 module ApplicationHelper
+	#yes, I'm aware this is ugly.  It'll get refactored out sooner or later.
 	def calendar_script_tag events, bookable = nil
 	r = "<script>
 		

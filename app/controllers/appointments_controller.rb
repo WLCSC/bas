@@ -109,10 +109,11 @@ class AppointmentsController < ApplicationController
     end
   end
   
+  
+  #JSON of all appointments for a given user
   def for
 	@user = User.find params[:id]
 	respond_to do |format|
-		format.html
 		format.json { render json: @user.appointments.map{|a| a.id==params[:h].to_i ? a.calendarify(current_user, true) : a.calendarify(current_user)} }
 	end
   end

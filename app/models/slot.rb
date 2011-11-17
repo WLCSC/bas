@@ -17,16 +17,7 @@ class Slot < ActiveRecord::Base
 	def initialize(attributes={},s,e)
 		attributes[:start] = s.map{|p| p[1] }.join('-') if s
 		attributes[:endt] = e.map{|p| p[1] }.join('-') if e
-		#date_hack(attributes, "start")
-		#date_hack(attributes, "endt")
 		super(attributes)
-	end
-	
-	def date_hack(attributes, property)
-		keys, values = [], []
-		attributes.each_key {|k| keys << k if k =~ /#{property}/ }.sort
-		keys.each { |k| values << attributes[k]; attributes.delete(k); }
-		attributes[property] = values.join("-")		
 	end
 	
 	def pretty_start
