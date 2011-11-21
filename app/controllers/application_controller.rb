@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
   
   def check_for_user
-    redirect_to '/sessions/new' unless session[:user_id]
+    redirect_to '/sessions/new' unless current_user
   end
   
   def check_for_admin
