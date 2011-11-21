@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Guidance</title>
+<link href="/assets/fullcalendar.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="/assets/main.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="/assets/jquery.js" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js" type="text/javascript"></script>
+<script src="/assets/fullcalendar.js" type="text/javascript"></script>
+<script src="/assets/application.js" type="text/javascript"></script>
+  <meta content="authenticity_token" name="csrf-param">
+<meta content="Mxke/fXfr+j9cqhzLouvelgOAEctH/u3NRodDnUGJJY=" name="csrf-token">
+</head>
+<body>
+<div id="nav">
+	<a href="http://10.10.1.204:3500/">My Appointments</a> |
+	<a href="http://10.10.1.204:3500/bookables">Make &amp; View Appointments</a> | 
+	<a href="http://10.10.1.204:3500/slots">Manage Slots</a> | 
+	<a href="http://10.10.1.204:3500/users">Manage Users</a> | 
+	<a href="http://10.10.1.204:3500/kinds">Manage Appointment Types</a> | 
+	<a href="http://10.10.1.204:3500/sessions/destroy">Log Out</a>
+</div>
+<div id="main">
+<p id="notice"></p>
+<div id="block_off">
+<h2>Block off dates</h2>
+<form accept-charset="UTF-8" action="/bookables/block" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="Mxke/fXfr+j9cqhzLouvelgOAEctH/u3NRodDnUGJJY=" type="hidden"></div>
+	<input id="bookable_id" name="bookable_id" value="1" type="hidden">
+	<label>Start</label> <select id="block_begin_1i" name="block[begin(1i)]">
+<option value="2006">2006</option>
+<option value="2007">2007</option>
+<option value="2008">2008</option>
+<option value="2009">2009</option>
+<option value="2010">2010</option>
+<option selected="selected" value="2011">2011</option>
+<option value="2012">2012</option>
+<option value="2013">2013</option>
+<option value="2014">2014</option>
+<option value="2015">2015</option>
+<option value="2016">2016</option>
+</select>
+<select id="block_begin_2i" name="block[begin(2i)]">
+<option value="1">January</option>
+<option value="2">February</option>
+<option value="3">March</option>
+<option value="4">April</option>
+<option value="5">May</option>
+<option value="6">June</option>
+<option value="7">July</option>
+<option value="8">August</option>
+<option value="9">September</option>
+<option value="10">October</option>
+<option selected="selected" value="11">November</option>
+<option value="12">December</option>
+</select>
+<select id="block_begin_3i" name="block[begin(3i)]">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+<option selected="selected" value="21">21</option>
+<option value="22">22</option>
+<option value="23">23</option>
+<option value="24">24</option>
+<option value="25">25</option>
+<option value="26">26</option>
+<option value="27">27</option>
+<option value="28">28</option>
+<option value="29">29</option>
+<option value="30">30</option>
+<option value="31">31</option>
+</select>
+<br>
+	<label>End</label> <select id="block_stop_1i" name="block[stop(1i)]">
+<option value="2006">2006</option>
+<option value="2007">2007</option>
+<option value="2008">2008</option>
+<option value="2009">2009</option>
+<option value="2010">2010</option>
+<option selected="selected" value="2011">2011</option>
+<option value="2012">2012</option>
+<option value="2013">2013</option>
+<option value="2014">2014</option>
+<option value="2015">2015</option>
+<option value="2016">2016</option>
+</select>
+<select id="block_stop_2i" name="block[stop(2i)]">
+<option value="1">January</option>
+<option value="2">February</option>
+<option value="3">March</option>
+<option value="4">April</option>
+<option value="5">May</option>
+<option value="6">June</option>
+<option value="7">July</option>
+<option value="8">August</option>
+<option value="9">September</option>
+<option value="10">October</option>
+<option selected="selected" value="11">November</option>
+<option value="12">December</option>
+</select>
+<select id="block_stop_3i" name="block[stop(3i)]">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+<option selected="selected" value="21">21</option>
+<option value="22">22</option>
+<option value="23">23</option>
+<option value="24">24</option>
+<option value="25">25</option>
+<option value="26">26</option>
+<option value="27">27</option>
+<option value="28">28</option>
+<option value="29">29</option>
+<option value="30">30</option>
+<option value="31">31</option>
+</select>
+<br>
+	<input name="commit" value="OK" type="submit">
+</form></div>
+<h2>Click the calendar to sign up for an appointment</h2>
+<div class="fc" style="width: 600px;"><table class="fc-header" style="width: 100%;"><tbody><tr><td class="fc-header-left"><span class="fc-button fc-button-prev fc-state-default fc-corner-left fc-corner-right"><span class="fc-button-inner"><span class="fc-button-content">&nbsp;◄&nbsp;</span><span class="fc-button-effect"><span></span></span></span></span><span class="fc-header-space"></span><span class="fc-button fc-button-next fc-state-default fc-corner-left fc-corner-right"><span class="fc-button-inner"><span class="fc-button-content">&nbsp;►&nbsp;</span><span class="fc-button-effect"><span></span></span></span></span></td><td class="fc-header-center"></td><td class="fc-header-right"><span class="fc-button fc-button-month fc-state-default fc-corner-left fc-corner-right"><span class="fc-button-inner"><span class="fc-button-content">month</span><span class="fc-button-effect"><span></span></span></span></span><span class="fc-header-space"></span><span class="fc-button fc-button-agendaWeek fc-state-default fc-corner-left fc-corner-right fc-state-active"><span class="fc-button-inner"><span class="fc-button-content">week</span><span class="fc-button-effect"><span></span></span></span></span><span class="fc-header-space"></span><span class="fc-button fc-button-agendaDay fc-state-default fc-corner-left fc-corner-right"><span class="fc-button-inner"><span class="fc-button-content">day</span><span class="fc-button-effect"><span></span></span></span></span></td></tr></tbody></table><div class="fc-content" style="position: relative; min-height: 1px;"><div unselectable="on" class="fc-view fc-view-agendaWeek fc-agenda" style="position: relative; -moz-user-select: none;"><table style="width: 100%;" class="fc-agenda-days fc-border-separate" cellspacing="0"><thead><tr class="fc-first fc-last"><th style="width: 54px;" class="fc-agenda-axis fc-widget-header fc-first">&nbsp;</th><th style="width: 104px;" class="fc-mon fc-col0 fc-widget-header">Mon 11/21</th><th style="width: 103px;" class="fc-tue fc-col1 fc-widget-header">Tue 11/22</th><th style="width: 103px;" class="fc-wed fc-col2 fc-widget-header">Wed 11/23</th><th style="width: 103px;" class="fc-thu fc-col3 fc-widget-header">Thu 11/24</th><th class="fc-fri fc-col4 fc-widget-header">Fri 11/25</th><th style="width: 14px;" class="fc-agenda-gutter fc-widget-header fc-last">&nbsp;</th></tr></thead><tbody><tr class="fc-first fc-last"><th class="fc-agenda-axis fc-widget-header fc-first">&nbsp;</th><td class="fc-mon fc-col0 fc-widget-content fc-state-highlight fc-today"><div style="height: 421px;"><div class="fc-day-content"><div style="position:relative">&nbsp;</div></div></div></td><td class="fc-tue fc-col1 fc-widget-content"><div><div class="fc-day-content"><div style="position:relative">&nbsp;</div></div></div></td><td class="fc-wed fc-col2 fc-widget-content"><div><div class="fc-day-content"><div style="position:relative">&nbsp;</div></div></div></td><td class="fc-thu fc-col3 fc-widget-content"><div><div class="fc-day-content"><div style="position:relative">&nbsp;</div></div></div></td><td class="fc-fri fc-col4 fc-widget-content"><div><div class="fc-day-content"><div style="position:relative">&nbsp;</div></div></div></td><td style="width: 14px;" class="fc-agenda-gutter fc-widget-content fc-last">&nbsp;</td></tr></tbody></table><div style="position: absolute; z-index: 2; left: 0pt; width: 100%; top: 22px;"><div style="position: absolute; width: 100%; overflow-x: hidden; overflow-y: auto; height: 421px;"><div style="position: relative; width: 100%; overflow: hidden;"><div style="position: absolute; z-index: 8; top: 0pt; left: 0pt;"><a href="http://10.10.1.204:3500/appointments/88" class="fc-event fc-event-skin fc-event-vert fc-corner-top fc-corner-bottom" style="position: absolute; z-index: 8; top: 272px; left: 275px; background-color: rgb(136, 136, 136); border-color: rgb(136, 136, 136); width: 91px; height: 103px;"><div class="fc-event-inner fc-event-skin" style="background-color:#888;border-color:#888"><div class="fc-event-head fc-event-skin" style="background-color:#888;border-color:#888"><div class="fc-event-time">8:05 - 8:30</div></div><div class="fc-event-content"><div class="fc-event-title">Unavailable</div></div><div class="fc-event-bg"></div></div></a></div><table class="fc-agenda-slots" style="width: 100%;" cellspacing="0"><tbody><tr class="fc-slot0 "><th style="width: 54px;" class="fc-agenda-axis fc-widget-header">7am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot1 fc-minor"><th class="fc-agenda-axis fc-widget-header">7:05am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot2 fc-minor"><th class="fc-agenda-axis fc-widget-header">7:10am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot3 fc-minor"><th class="fc-agenda-axis fc-widget-header">7:15am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot4 fc-minor"><th class="fc-agenda-axis fc-widget-header">7:20am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot5 fc-minor"><th class="fc-agenda-axis fc-widget-header">7:25am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot6 fc-minor"><th class="fc-agenda-axis fc-widget-header">7:30am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot7 fc-minor"><th class="fc-agenda-axis fc-widget-header">7:35am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot8 fc-minor"><th class="fc-agenda-axis fc-widget-header">7:40am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot9 fc-minor"><th class="fc-agenda-axis fc-widget-header">7:45am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot10 fc-minor"><th class="fc-agenda-axis fc-widget-header">7:50am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot11 fc-minor"><th class="fc-agenda-axis fc-widget-header">7:55am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot12 "><th class="fc-agenda-axis fc-widget-header">8am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot13 fc-minor"><th class="fc-agenda-axis fc-widget-header">8:05am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot14 fc-minor"><th class="fc-agenda-axis fc-widget-header">8:10am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot15 fc-minor"><th class="fc-agenda-axis fc-widget-header">8:15am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot16 fc-minor"><th class="fc-agenda-axis fc-widget-header">8:20am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot17 fc-minor"><th class="fc-agenda-axis fc-widget-header">8:25am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot18 fc-minor"><th class="fc-agenda-axis fc-widget-header">8:30am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot19 fc-minor"><th class="fc-agenda-axis fc-widget-header">8:35am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot20 fc-minor"><th class="fc-agenda-axis fc-widget-header">8:40am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot21 fc-minor"><th class="fc-agenda-axis fc-widget-header">8:45am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot22 fc-minor"><th class="fc-agenda-axis fc-widget-header">8:50am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot23 fc-minor"><th class="fc-agenda-axis fc-widget-header">8:55am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot24 "><th class="fc-agenda-axis fc-widget-header">9am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot25 fc-minor"><th class="fc-agenda-axis fc-widget-header">9:05am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot26 fc-minor"><th class="fc-agenda-axis fc-widget-header">9:10am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot27 fc-minor"><th class="fc-agenda-axis fc-widget-header">9:15am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot28 fc-minor"><th class="fc-agenda-axis fc-widget-header">9:20am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot29 fc-minor"><th class="fc-agenda-axis fc-widget-header">9:25am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot30 fc-minor"><th class="fc-agenda-axis fc-widget-header">9:30am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot31 fc-minor"><th class="fc-agenda-axis fc-widget-header">9:35am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot32 fc-minor"><th class="fc-agenda-axis fc-widget-header">9:40am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot33 fc-minor"><th class="fc-agenda-axis fc-widget-header">9:45am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot34 fc-minor"><th class="fc-agenda-axis fc-widget-header">9:50am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot35 fc-minor"><th class="fc-agenda-axis fc-widget-header">9:55am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot36 "><th class="fc-agenda-axis fc-widget-header">10am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot37 fc-minor"><th class="fc-agenda-axis fc-widget-header">10:05am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot38 fc-minor"><th class="fc-agenda-axis fc-widget-header">10:10am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot39 fc-minor"><th class="fc-agenda-axis fc-widget-header">10:15am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot40 fc-minor"><th class="fc-agenda-axis fc-widget-header">10:20am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot41 fc-minor"><th class="fc-agenda-axis fc-widget-header">10:25am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot42 fc-minor"><th class="fc-agenda-axis fc-widget-header">10:30am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot43 fc-minor"><th class="fc-agenda-axis fc-widget-header">10:35am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot44 fc-minor"><th class="fc-agenda-axis fc-widget-header">10:40am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot45 fc-minor"><th class="fc-agenda-axis fc-widget-header">10:45am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot46 fc-minor"><th class="fc-agenda-axis fc-widget-header">10:50am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot47 fc-minor"><th class="fc-agenda-axis fc-widget-header">10:55am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot48 "><th class="fc-agenda-axis fc-widget-header">11am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot49 fc-minor"><th class="fc-agenda-axis fc-widget-header">11:05am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot50 fc-minor"><th class="fc-agenda-axis fc-widget-header">11:10am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot51 fc-minor"><th class="fc-agenda-axis fc-widget-header">11:15am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot52 fc-minor"><th class="fc-agenda-axis fc-widget-header">11:20am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot53 fc-minor"><th class="fc-agenda-axis fc-widget-header">11:25am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot54 fc-minor"><th class="fc-agenda-axis fc-widget-header">11:30am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot55 fc-minor"><th class="fc-agenda-axis fc-widget-header">11:35am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot56 fc-minor"><th class="fc-agenda-axis fc-widget-header">11:40am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot57 fc-minor"><th class="fc-agenda-axis fc-widget-header">11:45am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot58 fc-minor"><th class="fc-agenda-axis fc-widget-header">11:50am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot59 fc-minor"><th class="fc-agenda-axis fc-widget-header">11:55am</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot60 "><th class="fc-agenda-axis fc-widget-header">12pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot61 fc-minor"><th class="fc-agenda-axis fc-widget-header">12:05pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot62 fc-minor"><th class="fc-agenda-axis fc-widget-header">12:10pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot63 fc-minor"><th class="fc-agenda-axis fc-widget-header">12:15pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot64 fc-minor"><th class="fc-agenda-axis fc-widget-header">12:20pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot65 fc-minor"><th class="fc-agenda-axis fc-widget-header">12:25pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot66 fc-minor"><th class="fc-agenda-axis fc-widget-header">12:30pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot67 fc-minor"><th class="fc-agenda-axis fc-widget-header">12:35pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot68 fc-minor"><th class="fc-agenda-axis fc-widget-header">12:40pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot69 fc-minor"><th class="fc-agenda-axis fc-widget-header">12:45pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot70 fc-minor"><th class="fc-agenda-axis fc-widget-header">12:50pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot71 fc-minor"><th class="fc-agenda-axis fc-widget-header">12:55pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot72 "><th class="fc-agenda-axis fc-widget-header">1pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot73 fc-minor"><th class="fc-agenda-axis fc-widget-header">1:05pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot74 fc-minor"><th class="fc-agenda-axis fc-widget-header">1:10pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot75 fc-minor"><th class="fc-agenda-axis fc-widget-header">1:15pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot76 fc-minor"><th class="fc-agenda-axis fc-widget-header">1:20pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot77 fc-minor"><th class="fc-agenda-axis fc-widget-header">1:25pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot78 fc-minor"><th class="fc-agenda-axis fc-widget-header">1:30pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot79 fc-minor"><th class="fc-agenda-axis fc-widget-header">1:35pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot80 fc-minor"><th class="fc-agenda-axis fc-widget-header">1:40pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot81 fc-minor"><th class="fc-agenda-axis fc-widget-header">1:45pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot82 fc-minor"><th class="fc-agenda-axis fc-widget-header">1:50pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot83 fc-minor"><th class="fc-agenda-axis fc-widget-header">1:55pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot84 "><th class="fc-agenda-axis fc-widget-header">2pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot85 fc-minor"><th class="fc-agenda-axis fc-widget-header">2:05pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot86 fc-minor"><th class="fc-agenda-axis fc-widget-header">2:10pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot87 fc-minor"><th class="fc-agenda-axis fc-widget-header">2:15pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot88 fc-minor"><th class="fc-agenda-axis fc-widget-header">2:20pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot89 fc-minor"><th class="fc-agenda-axis fc-widget-header">2:25pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot90 fc-minor"><th class="fc-agenda-axis fc-widget-header">2:30pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot91 fc-minor"><th class="fc-agenda-axis fc-widget-header">2:35pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot92 fc-minor"><th class="fc-agenda-axis fc-widget-header">2:40pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot93 fc-minor"><th class="fc-agenda-axis fc-widget-header">2:45pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot94 fc-minor"><th class="fc-agenda-axis fc-widget-header">2:50pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot95 fc-minor"><th class="fc-agenda-axis fc-widget-header">2:55pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot96 "><th class="fc-agenda-axis fc-widget-header">3pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot97 fc-minor"><th class="fc-agenda-axis fc-widget-header">3:05pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot98 fc-minor"><th class="fc-agenda-axis fc-widget-header">3:10pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot99 fc-minor"><th class="fc-agenda-axis fc-widget-header">3:15pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot100 fc-minor"><th class="fc-agenda-axis fc-widget-header">3:20pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot101 fc-minor"><th class="fc-agenda-axis fc-widget-header">3:25pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot102 fc-minor"><th class="fc-agenda-axis fc-widget-header">3:30pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot103 fc-minor"><th class="fc-agenda-axis fc-widget-header">3:35pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot104 fc-minor"><th class="fc-agenda-axis fc-widget-header">3:40pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot105 fc-minor"><th class="fc-agenda-axis fc-widget-header">3:45pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot106 fc-minor"><th class="fc-agenda-axis fc-widget-header">3:50pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr><tr class="fc-slot107 fc-minor"><th class="fc-agenda-axis fc-widget-header">3:55pm</th><td class="fc-widget-content"><div style="position:relative">&nbsp;</div></td></tr></tbody></table></div></div></div></div></div></div>
+
+
+
+
+<!-- This div will nor usually be visible until you pick a valid appointment time on the calendar -->
+
+<div id="appt_form" style="display: block">
+<form accept-charset="UTF-8" action="/appointments" class="new_appointment" id="new_appointment" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="Mxke/fXfr+j9cqhzLouvelgOAEctH/u3NRodDnUGJJY=" type="hidden"></div>
+<h2>Sign up for an appointment with Bradley Thompson</h2>
+  <input id="appointment_user_id" name="appointment[user_id]" value="1" type="hidden">
+  <input id="appointment_bookable_id" name="appointment[bookable_id]" value="1" type="hidden">
+	<div class="field">
+	<label for="appointment_user">User</label><br>
+	<select id="appointment_user_id" name="appointment[user_id]"><option selected="selected" value="1">Bradley Thompson</option>
+<option value="2">Zachary Baiel</option>
+<option value="3">Jennifer Zink</option>
+<option value="4">Joyce Grimble</option>
+<option value="5"></option>
+<option value="6"></option>
+<option value="7">Bradley Thompson</option></select>
+  </div>
+  <div class="field">
+		<label for="appointment_date">Date</label><br>
+		<select id="date_year" name="date[year]">
+<option value="2006">2006</option>
+<option value="2007">2007</option>
+<option value="2008">2008</option>
+<option value="2009">2009</option>
+<option value="2010">2010</option>
+<option selected="selected" value="2011">2011</option>
+<option value="2012">2012</option>
+<option value="2013">2013</option>
+<option value="2014">2014</option>
+<option value="2015">2015</option>
+<option value="2016">2016</option>
+</select>
+<select id="date_month" name="date[month]">
+<option value="1">January</option>
+<option value="2">February</option>
+<option value="3">March</option>
+<option value="4">April</option>
+<option value="5">May</option>
+<option value="6">June</option>
+<option value="7">July</option>
+<option value="8">August</option>
+<option value="9">September</option>
+<option value="10">October</option>
+<option selected="selected" value="11">November</option>
+<option value="12">December</option>
+</select>
+<select id="date_day" name="date[day]">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+<option selected="selected" value="21">21</option>
+<option value="22">22</option>
+<option value="23">23</option>
+<option value="24">24</option>
+<option value="25">25</option>
+<option value="26">26</option>
+<option value="27">27</option>
+<option value="28">28</option>
+<option value="29">29</option>
+<option value="30">30</option>
+<option value="31">31</option>
+</select>
+
+	</div>
+  <div class="field">
+	<label for="appointment_time">Time</label><br>
+	<select id="appointment_slot_id" name="appointment[slot_id]"><option selected="selected" value="61">07:45 AM - 08:05 AM</option>
+<option value="62">08:05 AM - 08:30 AM</option>
+<option value="63">08:30 AM - 08:55 AM</option>
+<option value="64">09:00 AM - 09:25 AM</option>
+<option value="65">09:25 AM - 09:50 AM</option>
+<option value="66">09:55 AM - 10:20 AM</option>
+<option value="67">10:20 AM - 10:45 AM</option>
+<option value="68">10:50 AM - 11:15 AM</option>
+<option value="69">11:15 AM - 11:40 AM</option>
+<option value="70">11:45 AM - 12:10 PM</option>
+<option value="71">12:10 PM - 12:35 PM</option>
+<option value="72">01:35 PM - 02:00 PM</option>
+<option value="73">02:00 PM - 02:25 PM</option>
+<option value="74">02:30 PM - 02:55 PM</option>
+<option value="75">02:55 PM - 03:20 PM</option>
+<option value="76">03:25 PM - 03:45 PM</option></select>
+  </div>
+  <div class="field">
+	<label for="appointment_kind">Kind</label><br>
+	<select id="appointment_kind_id" name="appointment[kind_id]"><option selected="selected" value="2">Other</option>
+<option value="3">ACR</option>
+<option value="4">Personal</option>
+<option value="5">Scheduling</option>
+<option value="6">College</option>
+<option value="7">Parent</option></select>
+  </div>
+  <div class="actions">
+	<input data-confirm="Are you sure?" name="commit" value="Create Appointment" type="submit">
+  </div>
+</form></div>
+
+
+<script>
+		
+function pad2(number) {
+	return (number < 10 ? '0' : '') + number
+}
+
+			slots = [
+				[61, 27900, 29100], 
+[62, 29100, 30600], 
+[63, 30600, 32100], 
+[64, 32400, 33900], 
+[65, 33900, 35400], 
+[66, 35700, 37200], 
+[67, 37200, 38700], 
+[68, 39000, 40500], 
+[69, 40500, 42000], 
+[70, 42300, 43800], 
+[71, 43800, 45300], 
+[72, 48900, 50400], 
+[73, 50400, 51900], 
+[74, 52200, 53700], 
+[75, 53700, 55200], 
+[76, 55500, 56700]
+			];
+		 $(document).ready(function() {
+		$('#calendar').fullCalendar({
+			weekends:false,
+			defaultView: 'agendaWeek',
+			header: {left: 'prev next', center: '', right: 'month agendaWeek agendaDay'},
+			events: '/bookables/1/events.json',
+			allDaySlot: false,
+			slotMinutes: 5,
+			firstHour: 7,
+			minTime: 7,
+			maxTime: 16,
+			eventColor: '#C00',
+			
+			dayClick: function(date, allDay, jsEvent, view) {
+				$('#date_year').val(date.getFullYear());
+				$('#date_month').val(date.getMonth() + 1);
+				$('#date_day').val(date.getDate());
+				
+				h = date.getHours();
+				
+				s = h*60*60 + date.getMinutes()*60;
+				
+				if(h > 12) {
+					h = h - 12;
+				}
+				h = pad2(h);
+				m = pad2(date.getMinutes());
+				
+				for(var i=0; i<slots.length; i++) {
+					var slot = slots[i];
+					if(slot[1] <= s && slot[2] > s ) {
+						$('#appointment_slot_id').val(slot[0]);
+						match = true;
+					}
+				}
+				if(match) {
+					$('#appt_form').css('display', 'block');
+				}else{
+					$('#appt_form').css('display', 'none');
+				}
+				
+			}});
+	});
+  </script>
+</div>
+
+
+</body></html>
