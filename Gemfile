@@ -18,9 +18,9 @@ end
 
 gem 'jquery-rails'
 gem 'whenever', :require => false
-#gem 'execjs'
+gem 'execjs'
 gem 'net-ldap'
-#gem 'therubyracer'
+gem 'therubyracer'
 gem 'paperclip'
 
 # Use unicorn as the web server
