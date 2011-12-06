@@ -20,7 +20,7 @@ function pad2(number) {
 		$('#calendar').fullCalendar({
 			weekends:false,
 			defaultView: 'agendaWeek',
-			header: {left: 'prev next', center: '', right: 'month agendaWeek agendaDay'},
+			header: {left: 'prev next', center: '', right: ''},
 			events: '/#{events}',
 			allDaySlot: false,
 			slotMinutes: 5,
@@ -44,10 +44,10 @@ function pad2(number) {
 				}
 				h = pad2(h);
 				m = pad2(date.getMinutes());
-				
+				match=false;
 				for(var i=0; i<slots.length; i++) {
 					var slot = slots[i];
-					if(slot[1] <= s && slot[2] > s ) {
+					if(slot[1] <= s && slot[2] >=s ) {
 						$('#appointment_slot_id').val(slot[0]);
 						match = true;
 					}

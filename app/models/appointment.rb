@@ -55,7 +55,7 @@ class Appointment < ActiveRecord::Base
 		slot = Slot.find(self.slot_id)
 		bk = Bookable.find(slot.bookable_id)
 		if bk.user == self.user
-			r = {:id => self.id, :start => self.start.iso8601, :end => self.end.iso8601, :title => "Unavailable", :allDay => false, :url => "/appointments/#{self.id}", :description => self.kind.name, :color => "#888"}
+			r = {:id => self.id, :start => self.start.iso8601, :end => self.end.iso8601, :title => "Unavailable", :allDay => false, :description => self.kind.name, :color => "#888"}
 			if highlight
 				r[:color] = "#800" 
 			end

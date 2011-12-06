@@ -1,10 +1,77 @@
+body {
+	background-color: #A60400;
+}
+
+h2 {
+	text-align: center;
+}
+
+
 /* This is for some javascript that hides the new appointment form until you pick a good spot on a calendar*/
 #appt_form {
 	display: none;
+	float: right;
 }
 
 /* This was driving me nuts, so I fixed it. */
 #nav {
+	width: 250px;
+}
+
+.big_button {
+	width: 220px;
+	margin: auto;
+	background-color: #FFB773;
 	margin-bottom: 20px;
+	padding: 15px 10px 15px 10px;
+	text-align: center;
+}
+
+#calendar {
+	width: 600px;
+}
+
+#main {
+	width: 900px;
+	height: 100%;
+	margin: auto;
+	background-color: #fff;
+	padding: 10px;
+}
+
+#block_off {
+	margin: auto;
+	text-align: center;
+	width: auto;
+}
+
+#contact {
+	margin: auto;
+	text-align: center;
+	width: auto;
+}
+
+#appt_form {
+	margin: auto;
+	text-align: center;
+	width: 250px;
+	margin-bottom: 25px;
+}
+
+#login {
+	margin: auto;
+	padding: 30px;
+	text-align: center;
+	background-color: #ff7673;
+	width: 250px;
+}
+
+#flash_notice, #flash_error {
+	width: 250px;
+	margin: auto;
+	padding: 10px;
+	background-color: #bf3330;
+	color: #fff;
+	text-align: center;
 }
 

@@ -1,33 +1,12 @@
 <p id="notice"><%= notice %></p>
-<% if current_user.admin? || current_user == @bookable.user %>
-<div id="block_off">
-<h2>Block off dates</h2>
-<%= form_tag '/bookables/block' do %>
-	<%= hidden_field_tag :bookable_id, @bookable.id %>
-	<label>Start</label> <%= date_select :block, :begin %><br>
-	<label>End</label> <%= date_select :block, :stop %><br/>
-	<%= submit_tag "OK" %>
-<% end %>
-</div>
-<% else %>
-<div id="contact">
-	<h2>Send Email to <%= @bookable.user.name %></h2>
-	<%= form_tag '/bookables/contact_email' do %>
-		<%= text_area_tag :message %>
-		<%= hidden_field_tag :target, @bookable.user.id %>
-		<%= submit_tag "Send" %>
-	<% end %>
-</div>	
-<%end%>
-<h2>Click the calendar to sign up for an appointment</h2>
-<div id="calendar" style="width: 600px;"></div>
-
-
-
-
+<table width="100%">
+<tr>
+<td><div id="calendar"></div></td>
+<td style="text-align: center">
+<h2>Click on the calendar to sign up for an appointment with <%= @bookable.user.name %></h2>
 <div id="appt_form">
 <%= form_for(@appointment = Appointment.new) do |f| %>
-<h2>Sign up for an appointment with <%= @bookable.user.name %></h2>
+
   <% if @appointment.errors.any? %>
 	<div id="error_explanation">
 	  <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
@@ -56,7 +35,7 @@
 	<%= f.select :slot_id, @bookable.slots.map{|s| ["#{s.pretty_start} - #{s.pretty_end}", s.id]} %>
   </div>
   <div class="field">
-	<%= f.label :kind %><br />
+	<%= f.label :type %><br />
 	<%= f.select :kind_id, Kind.all.map{|k| [k.name, k.id]} %>
   </div>
   <div class="actions">
@@ -64,6 +43,31 @@
   </div>
 <% end %>
 </div>
+<input type="button" value="Cancel" onClick="window.location = '/';"
+</td>
+</tr>
+</table>
+
+<% if current_user.admin? || current_user == @bookable.user %>
+<div id="block_off">
+<h2>Block off dates</h2>
+<%= form_tag '/bookables/block' do %>
+	<%= hidden_field_tag :bookable_id, @bookable.id %>
+	<label>Start</label> <%= date_select :block, :begin %><br>
+	<label>End</label> <%= date_select :block, :stop %><br/>
+	<%= submit_tag "OK" %>
+<% end %>
+</div>
+<% else %>
+<div id="contact">
+	<h2>Send Email to <%= @bookable.user.name %></h2>
+	<%= form_tag '/bookables/contact_email' do %>
+		<%= text_area_tag :message %>
+		<%= hidden_field_tag :target, @bookable.user.id %>
+		<%= submit_tag "Send" %>
+	<% end %>
+</div>	
+<%end%>
 
 
 <%= calendar_script_tag "bookables/#{@bookable.id}/events.json", @bookable%>

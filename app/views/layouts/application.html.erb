@@ -8,22 +8,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="nav">
-	<% if current_user %>
-	<%= link_to "My Appointments", root_path %> |
-	<%= link_to "Make & View Appointments", bookables_path %> | 
-	<% if current_user.admin? %>
-	<%= link_to "Manage Slots", slots_path %> | 
-	<%= link_to "Manage Users", users_path %> | 
-	<%= link_to "Manage Appointment Types", kinds_path %> | 
-	<% end %>
-	<%= link_to "Log Out", '/sessions/destroy' %>
-	<% end %>
-</div>
+<div id="main">
 <% flash.each do |name, msg| %>  
 			<%= content_tag :div, msg, :id => "flash_#{name}" %>  
 		<% end %>  
-<div id="main">
 <%= yield %>
 </div>
 </body>
