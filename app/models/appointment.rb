@@ -54,17 +54,68 @@ class Appointment < ActiveRecord::Base
 	def calendarify(f,highlight=false)
 		slot = Slot.find(self.slot_id)
 		bk = Bookable.find(slot.bookable_id)
-		if bk.user == self.user
-			r = {:id => self.id, :start => self.start.iso8601, :end => self.end.iso8601, :title => "Unavailable", :allDay => false, :description => self.kind.name, :color => "#888"}
+		r={}
+		r[:id] = self.id
+		r[:start] = self.start.iso8601
+		r[:end] = self.end.iso8601
+		r[:allDay] = false
+		if f.admin?
+			r[:title] = "#{self.user.name} with #{bk.user.name}"
+			r[:url] = "/appointments/#{self.id}"
+			r[:description] = self.kind.name
 			if highlight
-				r[:color] = "#800" 
+				r[:color] = "#AA3"
+			else
+				r[:color] = "#F22"
+			end
+			if bk.user == self.user
+				if highlight
+					r[:color] = "#888"
+				else
+					r[:color] = "#444"
+				end
+			end
+		elsif bk.user == self.user
+			r[:title] = "Unavailable"
+			r[:color] = "#888"
+		elsif bk == f.bookable
+			r[:title] = "Appointment with #{self.user.name}"
+			r[:url] = "/appointments/#{self.id}"
+			r[:description] = self.kind.name
+			if highlight
+				r[:color] = "#AA0"
+			else
+				r[:color] = "#C00"
+			end
+		elsif self.user == f
+			r[:title] = "Appointment with #{bk.user.name}"
+			r[:url] = "/appointments/#{self.id}"
+			r[:description] = self.kind.name
+			if highlight
+				r[:color] = "#CC0"
+			else
+				r[:color] = "#C00"
 			end
 		else
-			r = {:id => self.id, :start => self.start.iso8601, :end => self.end.iso8601, :title => (f.bookable ? (self.user.name || self.user.username) : (bk.user.name || bk.user.username)), :allDay => false, :url => "/appointments/#{self.id}", :description => self.kind.name}
-			if highlight
-				r[:color] = "#CC0" 
-			end
+			r[:title] = "Unavailable"
+			r[:color] = "#888"
 		end
+		
+		
+		
+		
+		
+		#if bk.user == self.user
+		#	r = {:id => self.id, :start => self.start.iso8601, :end => self.end.iso8601, :title => "Unavailable", :allDay => false, :description => self.kind.name, :color => "#888"}
+		#	if highlight
+		#		r[:color] = "#800" 
+		#	end
+		#else
+		#	r = {:id => self.id, :start => self.start.iso8601, :end => self.end.iso8601, :title => (f.bookable ? (self.user.name || self.user.username) : (bk.user.name || bk.user.username)), :allDay => false, :url => "/appointments/#{self.id}", :description => self.kind.name}
+		#	if highlight
+		#		r[:color] = "#CC0" 
+		#	end
+		#end
 		
 		r
 	end

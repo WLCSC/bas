@@ -36,7 +36,7 @@
   </div>
   <div class="field">
 	<%= f.label :type %><br />
-	<%= f.select :kind_id, Kind.all.map{|k| [k.name, k.id]} %>
+	<%= f.select :kind_id, Kind.all.sort{|a,b| a.name <=> b.name}.map{|k| [k.name, k.id]} %>
   </div>
   <div class="actions">
 	<%= f.submit :confirm => "Are you sure?" %>
@@ -53,8 +53,8 @@
 <h2>Block off dates</h2>
 <%= form_tag '/bookables/block' do %>
 	<%= hidden_field_tag :bookable_id, @bookable.id %>
-	<label>Start</label> <%= date_select :block, :begin %><br>
-	<label>End</label> <%= date_select :block, :stop %><br/>
+	<label>Start</label> <%= datetime_select :block, :begin %><br>
+	<label>End</label> <%= datetime_select :block, :stop %><br/>
 	<%= submit_tag "OK" %>
 <% end %>
 </div>

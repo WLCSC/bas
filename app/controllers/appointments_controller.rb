@@ -10,7 +10,7 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @appointments.map{|a| a.calendarify} }
+      format.json { render json: @appointments.map{|a| a.calendarify(current_user)} }
     end
   end
 
@@ -68,7 +68,7 @@ class AppointmentsController < ApplicationController
 		if @appointment.date == Date.today
 			AppointmentMailer.today_change_email(@appointment).deliver
 		end
-        format.html { redirect_to @bookable, notice: 'Appointment was successfully created.  Please make sure the listed time & date are correct and that you are seeing the right person.' }
+        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.  Please make sure the listed time & date are correct and that you are seeing the right person.' }
         format.json { render json: @appointment, status: :created, location: @appointment }
       else
 		@bookable = Bookable.find(@slot.bookable_id)

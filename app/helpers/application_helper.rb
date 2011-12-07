@@ -20,14 +20,15 @@ function pad2(number) {
 		$('#calendar').fullCalendar({
 			weekends:false,
 			defaultView: 'agendaWeek',
-			header: {left: 'prev next', center: '', right: ''},
+			header: {left: 'prev next', center: '', right: 'month agendaWeek agendaDay'},
 			events: '/#{events}',
 			allDaySlot: false,
 			slotMinutes: 5,
 			firstHour: 7,
 			minTime: 7,
 			maxTime: 16,
-			eventColor: '#C00'"
+			eventColor: '#C00'
+			"
 			r += ",
 			
 			dayClick: function(date, allDay, jsEvent, view) {

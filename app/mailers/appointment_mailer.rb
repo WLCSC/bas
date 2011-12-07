@@ -16,4 +16,12 @@ class AppointmentMailer < ActionMailer::Base
 	@appointment = appointment
 	mail(:to => @bookable.user.email, :subject => "Canceled appointment")
   end
+  
+  def daily_digest user
+	if user.is_a? Bookable
+		user = user.user
+	end
+	
+	
+  end
 end

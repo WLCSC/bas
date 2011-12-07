@@ -27,5 +27,13 @@ class Slot < ActiveRecord::Base
 	def pretty_end
 		(Time.now.beginning_of_day + self.end_time.to_i).strftime("%I:%M %p")
 	end
+	
+	def start_for(day)
+		(day.to_time.beginning_of_day + self.start_time).to_datetime
+	end
+	
+	def end_for(day)
+		(day.to_time.beginning_of_day + self.end_time).to_datetime
+	end
 
 end

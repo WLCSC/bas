@@ -4,6 +4,7 @@
 <td>
 
 <div id="appt_form" style="display: block">
+<h2>Appointment Details</h2>
 <p>
   <b>User:</b>
   <%= @appointment.user.name %>
@@ -20,14 +21,14 @@
 </p>
 
 <p>
-  <b>At:</b>
-  <%= @appointment.start.strftime("%A, %B %d %Y, %I:%M %P")%>
+  <b>When:</b>
+  <%= @appointment.start.strftime("%A, %B %d %Y</br> %I:%M %P").html_safe %>
 </p>
-<% if current_user.admin? || @appointment.user == current_user %> <%= link_to 'Cancel', appointment_path(@appointment), :method => :delete %><% end %>
-<p><%= link_to 'Back', root_path %><p></div>
+<% if current_user.admin? || @appointment.user == current_user %> <div class="big_button"><%= link_to 'Cancel', appointment_path(@appointment), :method => :delete, :confirm => "Are you sure?" %></div><% end %>
+<div class="big_button"><%= link_to 'Back', root_path %></div></div>
 
 
 </td>
 </tr>
 </table>
-<%= calendar_script_tag "appointments/for/#{@bookable.user.id}.json?h=#{@appointment.id}" %>
+<%= calendar_script_tag "appointments/for/#{current_user.id}.json?h=#{@appointment.id}" %>

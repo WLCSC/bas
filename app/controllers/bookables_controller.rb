@@ -105,17 +105,45 @@ class BookablesController < ApplicationController
   
   #updates schedule with blocked out days
   def block
-	start = Date.new(params[:block]['begin(1i)'].to_i, params[:block]['begin(2i)'].to_i, params[:block]['begin(3i)'].to_i)
-	stop = Date.new(params[:block]['stop(1i)'].to_i, params[:block]['stop(2i)'].to_i, params[:block]['stop(3i)'].to_i)
+	#raise 'die'
+	start = DateTime.new(params[:block]['begin(1i)'].to_i, params[:block]['begin(2i)'].to_i, params[:block]['begin(3i)'].to_i,params[:block]['begin(4i)'].to_i,params[:block]['begin(5i)'].to_i)
+	stop = DateTime.new(params[:block]['stop(1i)'].to_i, params[:block]['stop(2i)'].to_i, params[:block]['stop(3i)'].to_i,params[:block]['stop(4i)'].to_i,params[:block]['stop(5i)'].to_i)
 	bookable = Bookable.find(params[:bookable_id])
 	
-	(start..stop).to_a.each do |d|
+	start_day = start.to_date
+	stop_day = stop.to_date
+	
+	d = start_day
+	bookable.slots.each do |s|
+		if s.start_time > (start.to_time - start.beginning_of_day)
+		a = Appointment.new
+		a.slot = s
+		a.date = d
+		a.user = bookable.user
+		a.kind = Kind.find_by_name('Other')
+		a.save
+		end
+	end
+	
+	d = stop_day
+	bookable.slots.each do |s|
+		if s.end_time < (stop.to_time - stop.beginning_of_day)
+		a = Appointment.new
+		a.slot = s
+		a.date = d
+		a.user = bookable.user
+		a.kind = Kind.find_by_name('Other')
+		a.save
+		end
+	end
+	
+	(start_day+1..stop_day-1).to_a.each do |d|
 		bookable.slots.each do |s|
 			a = Appointment.new
 			a.slot = s
 			a.date = d
 			a.user = bookable.user
-			a.kind = Kind.find 1
+			a.kind = Kind.find_by_name('Other')
 			a.save
 		end
 	end
