@@ -1,4 +1,4 @@
-Bookable
+BAS
 ========
 
 A simple appointment scheduling app.
