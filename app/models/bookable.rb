@@ -7,14 +7,14 @@ class Bookable < ActiveRecord::Base
 		Appointment.where(:slot_id => self.slots.map{|s| s.id})
 	end
 	
-	def events(s,e)
+	def events(s,e,c)
 		if s && e
 			e = self.appointments.where(:start => Time.at(s)...Time.at(e))
 		else
 			e = self.appointments.all
 		end
 		
-		e.map{|a| a.calendarify(self.user)}
+		e.map{|a| a.calendarify(c)}
 	end
 	
 	def busy? time

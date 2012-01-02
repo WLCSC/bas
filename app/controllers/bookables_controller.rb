@@ -92,7 +92,7 @@ class BookablesController < ApplicationController
 	@end = Time.at(params[:end].to_i) || nil
 
     respond_to do |format|
-      format.json { render json: @bookable.events(@start,@end) }
+      format.json { render json: @bookable.events(@start,@end,current_user) }
     end
   end
   

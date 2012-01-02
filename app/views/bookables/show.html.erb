@@ -60,7 +60,7 @@
 </div>
 <% else %>
 <div id="contact">
-	<h2>Send Email to <%= @bookable.user.name %></h2>
+	<h2>Send Email to <%= @bookable.user.name ? @bookable.user.name : @bookable.user.username %></h2>
 	<%= form_tag '/bookables/contact_email' do %>
 		<%= text_area_tag :message %>
 		<%= hidden_field_tag :target, @bookable.user.id %>

@@ -53,20 +53,23 @@ class Appointment < ActiveRecord::Base
 	#spits out a hash that will be piped through to be nicely displayed on a calendar
 	def calendarify(f,highlight=false)
 		slot = Slot.find(self.slot_id)
+		puts "Slot #{slot.id}"
 		bk = Bookable.find(slot.bookable_id)
+		puts "Bookable #{bk.id}"
+		#puts "Current bk #{f.bookable.id}"
 		r={}
 		r[:id] = self.id
 		r[:start] = self.start.iso8601
 		r[:end] = self.end.iso8601
 		r[:allDay] = false
 		if f.admin?
-			r[:title] = "#{self.user.name} with #{bk.user.name}"
+			r[:title] = "#{self.user.name} with #{bk.user.name ? bk.user.name : bk.user.username}"
 			r[:url] = "/appointments/#{self.id}"
 			r[:description] = self.kind.name
 			if highlight
-				r[:color] = "#AA3"
+				r[:color] = "#3AA"
 			else
-				r[:color] = "#F22"
+				r[:color] = "#22F"
 			end
 			if bk.user == self.user
 				if highlight
@@ -88,7 +91,7 @@ class Appointment < ActiveRecord::Base
 				r[:color] = "#C00"
 			end
 		elsif self.user == f
-			r[:title] = "Appointment with #{bk.user.name}"
+			r[:title] = "Appointment with #{bk.user.name ? bk.user.name : bk.user.username}"
 			r[:url] = "/appointments/#{self.id}"
 			r[:description] = self.kind.name
 			if highlight
@@ -98,7 +101,7 @@ class Appointment < ActiveRecord::Base
 			end
 		else
 			r[:title] = "Unavailable"
-			r[:color] = "#888"
+			r[:color] = "#777"
 		end
 		
 		r
