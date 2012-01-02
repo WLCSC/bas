@@ -8,7 +8,7 @@
 <% @bookables.each do |bookable| %>
   <tr>
 	<td><%= link_to image_tag(bookable.avatar.file? ? bookable.avatar.url(:thumb) : 'missing.PNG'), bookable%></td>
-	<td><%= link_to bookable.user.name, bookable %></td>
+	<td><%= link_to bookable.user.name ? bookable.user.name : bookable.user.username, bookable %></td>
 	<% if current_user.admin? %>
     <td><%= link_to 'Edit', edit_bookable_path(bookable) %></td>
 	<% end %>

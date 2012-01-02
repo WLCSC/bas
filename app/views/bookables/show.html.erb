@@ -3,7 +3,7 @@
 <tr>
 <td><div id="calendar"></div></td>
 <td style="text-align: center">
-<h2>Click on the calendar to sign up for an appointment with <%= @bookable.user.name %></h2>
+<h2>Click on the calendar to sign up for an appointment with <%= @bookable.user.name ? @bookable.user.name : @bookable.user.username %></h2>
 <div id="appt_form">
 <%= form_for(@appointment = Appointment.new) do |f| %>
 

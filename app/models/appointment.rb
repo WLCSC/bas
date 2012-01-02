@@ -101,22 +101,6 @@ class Appointment < ActiveRecord::Base
 			r[:color] = "#888"
 		end
 		
-		
-		
-		
-		
-		#if bk.user == self.user
-		#	r = {:id => self.id, :start => self.start.iso8601, :end => self.end.iso8601, :title => "Unavailable", :allDay => false, :description => self.kind.name, :color => "#888"}
-		#	if highlight
-		#		r[:color] = "#800" 
-		#	end
-		#else
-		#	r = {:id => self.id, :start => self.start.iso8601, :end => self.end.iso8601, :title => (f.bookable ? (self.user.name || self.user.username) : (bk.user.name || bk.user.username)), :allDay => false, :url => "/appointments/#{self.id}", :description => self.kind.name}
-		#	if highlight
-		#		r[:color] = "#CC0" 
-		#	end
-		#end
-		
 		r
 	end
 end

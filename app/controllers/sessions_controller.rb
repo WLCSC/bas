@@ -9,6 +9,8 @@ class SessionsController < ApplicationController
 		user = User.find_by_username(params[:username])
 		if user && user.name
 			session[:user_id] = user.id
+		elsif user
+			user = ldap_populate(user, params[:username], params[:password])
 		else
 			user = ldap_populate(User.new,params[:username], params[:password])
 			session[:user_id] = user.id

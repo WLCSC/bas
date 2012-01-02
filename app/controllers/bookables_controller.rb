@@ -46,6 +46,7 @@ class BookablesController < ApplicationController
 
     respond_to do |format|
       if @bookable.save
+		@bookable.slot_scaffold
         format.html { redirect_to @bookable, notice: 'Bookable was successfully created.' }
         format.json { render json: @bookable, status: :created, location: @bookable }
       else
