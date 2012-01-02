@@ -8,6 +8,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= link_to image_tag('logo.png', :class => 'logo'), root_path %>
 <div id="main">
 <% flash.each do |name, msg| %>  
 			<%= content_tag :div, msg, :id => "flash_#{name}" %>  
