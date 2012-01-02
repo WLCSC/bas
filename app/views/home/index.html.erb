@@ -3,7 +3,7 @@
 <td><h2>Your appointments:</h2><div id="calendar" style="margin: auto;"></div>
 <ul>
 <% current_user.appointments.first(5).each do |a| %>
-	<li><%= link_to "#{a.kind.name} appointment with #{current_user.bookable ? a.user.name : a.bookable.user.name} at #{a.start.strftime("%A, %B %d %Y</br> %I:%M %P").html_safe}", a %></li>
+	<li><%= link_to "#{a.kind.name} appointment on #{a.start.strftime("%A, %B %d %Y at %I:%M %P").html_safe}", a %></li>
 <% end %>
 </ul>
 </td>
