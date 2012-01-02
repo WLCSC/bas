@@ -47,7 +47,7 @@ class Bookable < ActiveRecord::Base
 		scaffold.each_line do |line|
 			times = line.split("-")
 			s = Slot.new nil, nil
-			s.name = self.user.name + " " + i.to_s
+			s.name = self.user.username + " " + i.to_s
 			i+= 1
 			s.bookable_id = self.id
 			s.start_time = times[0].to_i
