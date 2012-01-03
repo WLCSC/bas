@@ -20,6 +20,7 @@ gem 'execjs'
 gem 'net-ldap'
 gem 'therubyracer'
 gem 'paperclip'
+gem "exception_notification", :require => "exception_notifier"
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -5,6 +5,6 @@ class ContactMailer < ActionMailer::Base
 	@user = user
 	@target = target
 	@message = message
-	mail(:to => target.email, :subject => "Message from the Scheduling System")
+	mail(:to => target.email, :subject => "[BAS] Message from the Scheduling System")
   end
 end

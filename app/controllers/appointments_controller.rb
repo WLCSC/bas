@@ -66,6 +66,7 @@ class AppointmentsController < ApplicationController
     respond_to do |format|
       if @appointment.save
 		if @appointment.date == Date.today
+			puts "Sending notice"
 			AppointmentMailer.today_change_email(@appointment).deliver
 		end
         format.html { redirect_to @appointment, notice: 'Appointment was successfully created.  Please make sure the listed time & date are correct and that you are seeing the right person.' }
@@ -99,6 +100,7 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment = Appointment.find(params[:id])
 	if @appointment.date == Date.today
+			puts "Sending Cancellation Notice"
 			AppointmentMailer.today_cancel_email(@appointment).deliver
 		end
     @appointment.destroy

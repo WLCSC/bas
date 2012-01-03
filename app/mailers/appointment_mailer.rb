@@ -6,7 +6,7 @@ class AppointmentMailer < ActionMailer::Base
 	slot = Slot.find(appointment.slot_id)
 	@bookable = Bookable.find(slot.bookable_id)
 	@appointment = appointment
-	mail(:to => @bookable.user.email, :subject => "New appointment scheduled for today")
+	mail(:to => @bookable.user.email, :subject => "[BAS] New appointment scheduled for today")
   end
   
   def today_cancel_email appointment
@@ -14,7 +14,7 @@ class AppointmentMailer < ActionMailer::Base
 	slot = Slot.find(appointment.slot_id)
 	@bookable = Bookable.find(slot.bookable_id)
 	@appointment = appointment
-	mail(:to => @bookable.user.email, :subject => "Canceled appointment")
+	mail(:to => @bookable.user.email, :subject => "[BAS] Canceled appointment")
   end
   
   def daily_digest user
