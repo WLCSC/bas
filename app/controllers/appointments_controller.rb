@@ -99,7 +99,7 @@ class AppointmentsController < ApplicationController
   # DELETE /appointments/1.json
   def destroy
     @appointment = Appointment.find(params[:id])
-	if @appointment.date == Date.today
+	if @appointment.day == Date.today
 			logger.info "Sending Cancellation Notice"
 			AppointmentMailer.today_cancel_email(@appointment).deliver
 		end

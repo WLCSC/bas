@@ -50,6 +50,10 @@ class Appointment < ActiveRecord::Base
 		attributes[property] = values.join("-")		
 	end
 	
+	def day
+		date || self.start.to_date
+	end
+	
 	#spits out a hash that will be piped through to be nicely displayed on a calendar
 	def calendarify(f,highlight=false)
 		slot = Slot.find(self.slot_id)

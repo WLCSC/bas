@@ -21,7 +21,8 @@ class AppointmentMailer < ActionMailer::Base
 	if user.is_a? Bookable
 		user = user.user
 	end
-	
-	
+	@user = user
+	@appointments = @user.today_appointments
+	mail(:to => @user.email, :subject => "[BAS] Appointments for today")
   end
 end
