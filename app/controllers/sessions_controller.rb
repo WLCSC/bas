@@ -24,8 +24,9 @@ class SessionsController < ApplicationController
   end
   
   def destroy  
+	flash[:notice] = "Logged out" if session[:user_id]
     session[:user_id] = nil  
-    redirect_to '/sessions/new', :notice => "Logged out!"  
+    redirect_to '/sessions/new'
   end  
 
 end
