@@ -6,7 +6,6 @@
   <%= stylesheet_link_tag    "main" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_tag do %>
-  <script type="text/javascript">
 idleTime = 0;
 $(document).ready(function () {
     //Increment the idle time counter every minute.
@@ -26,8 +25,6 @@ function timerIncrement() {
         window.location.reload();
     }
 }
-</script>
-
   <% end %>
   <%= csrf_meta_tags %>
 </head>
