@@ -21,11 +21,11 @@ $(document).ready(function () {
 })
 function timerIncrement() {
     idleTime = idleTime + 1;
-    if (idleTime > 11) { // 30 seconds
+    if (idleTime > 11) { // 60 seconds
         window.location = "http://"+window.location.host+"/sessions/destroy"
     }
 }
-  <% end %>
+  <% end unless (current_user && current_user.bookable) || !(current_user) %>
   <%= csrf_meta_tags %>
 </head>
 <body>
