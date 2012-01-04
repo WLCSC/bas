@@ -8,6 +8,7 @@ How To
 
 * bundle install
 * edit/create config/database.yml & config/app_config.yml
+* edit config/initializers/setup_mail.rb with your mail server details
 * rake db:setup
 
 Note that at the moment, since users don't exist until either they log in or are force created by an admin, you'll need to manually add your first user via the console (create a new user with username=your username & administrator=true).  Once you have your first user, you can create more users by logging in, going to the 'manage users' link, and force creating users at the bottom of the page.
