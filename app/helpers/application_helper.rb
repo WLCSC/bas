@@ -20,7 +20,7 @@ function pad2(number) {
 		$('#calendar').fullCalendar({
 			weekends:false,
 			defaultView: 'agendaWeek',
-			header: {left: 'prev next', center: '', right: 'month agendaWeek agendaDay'},
+			header: {left: 'prev next', center: 'title', right: 'month agendaWeek agendaDay'},
 			events: '/#{events}',
 			allDaySlot: false,
 			slotMinutes: 5,
