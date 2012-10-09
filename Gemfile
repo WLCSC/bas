@@ -15,12 +15,15 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'whenever', :require => false
 gem 'execjs'
 gem 'net-ldap'
 gem 'therubyracer'
 gem 'paperclip'
 gem "exception_notification", :require => "exception_notifier"
+gem 'icalendar'
+gem 'rails3-jquery-autocomplete'
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -15,6 +15,7 @@
     <td><%= @bookable.user.name %></td>
 	<td><%= slot.pretty_start %></td>
 	<td><%= slot.pretty_end %></td>
+	<td><%= link_to "Delete", slot, :method => 'delete' %>
   </tr>
 <% end %>
 </table>

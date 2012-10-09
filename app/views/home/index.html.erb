@@ -2,7 +2,7 @@
 <tr>
 <td><h2>Your appointments:</h2><div id="calendar" style="margin: auto;"></div>
 <ul>
-<% current_user.appointments.first(5).each do |a| %>
+	<% current_user.next_appointments.first(5).each do |a| %>
 	<li><%= link_to "#{a.kind.name} appointment on #{a.start.strftime("%A, %B %d %Y at %I:%M %P").html_safe}", a %></li>
 <% end %>
 </ul>
@@ -11,8 +11,10 @@
 <% if current_user %>
 <div id="nav">	
 	<div class="big_button"><%= link_to "Make & View Appointments", bookables_path %></div>
+	<div class="big_button"><%= link_to "Export Appointments to iCal", user_path(current_user, :format => :ics) %></div>
 	
 	<% if current_user.admin? %>
+		<div class="big_button"><%= link_to "See Multiple Calendars", '/multiview/new' %></div>
 	<div class="big_button"><%= link_to "Manage Slots", slots_path %></div>
 	<div class="big_button"><%= link_to "Manage Users", users_path %></div>
 	<div class="big_button"><%= link_to "Manage Appointment Types", kinds_path %></div>

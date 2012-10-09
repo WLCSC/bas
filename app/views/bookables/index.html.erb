@@ -1,17 +1,18 @@
-<h1>Make an Appointment</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-
+<h2 style="text-align: center;">Who do you want to make an appointment with?</h3>
+<table style="width: 60%; margin: auto;">
 <% @bookables.each do |bookable| %>
-  <tr>
-	<td><%= link_to image_tag(bookable.avatar.file? ? bookable.avatar.url(:thumb) : 'missing.PNG'), bookable%></td>
+	<tr>
+		<% if bookable.slots.count > 0 %>
+	<td><%= link_to((bookable.avatar.file? ? image_tag(bookable.avatar.url(:thumb)) : "No Picture"), bookable) %></td>
 	<td><%= link_to bookable.user.name ? bookable.user.name : bookable.user.username, bookable %></td>
+<% else %>
+	<td><%= (bookable.avatar.file? ? image_tag(bookable.avatar.url(:thumb)) : "No Picture") %></td>
+	<td><%= (bookable.user.name ? bookable.user.name : bookable.user.username)%></td>
+<% end %>
 	<% if current_user.admin? %>
     <td><%= link_to 'Edit', edit_bookable_path(bookable) %></td>
 	<% end %>
+
   </tr>
 <% end %>
 </table>

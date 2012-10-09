@@ -1,3 +1,5 @@
+require 'auth.rb'
+
 class ConflictValidator < ActiveModel::Validator
 	def validate(record)
 		unless record.start #make sure this happens
@@ -17,13 +19,23 @@ end
 
 class Appointment < ActiveRecord::Base
 	before_create :prep_time
-	attr_accessor :bookable_id, :date
+	before_save :fix_name
+	attr_accessor :bookable_id, :date, :notes, :user_name
 	belongs_to :slot
 	belongs_to :user
 	belongs_to :kind
 	has_one :bookable, :through => :slot
 	validates_with ConflictValidator, :on => :create
 	
+	def fix_name
+		if self.user_name && self.user_name != ""
+			u = User.where(:name => self.user_name).first
+			unless u
+				u = ldap_named_populate(self.user_name)
+			end
+			self.user = u
+		end
+	end
 	
 	def prep_time
 		unless self.slot
@@ -53,21 +65,30 @@ class Appointment < ActiveRecord::Base
 	def day
 		date || self.start.to_date
 	end
-	
+
+	def to_ical
+		e = Icalendar::Event.new
+		e.uid = "BAS_EVENT_ID##{self.id}"
+		e.dtstart = self.start
+		e.dtend = self.end
+		e.summary = "#{self.user.name} - #{self.kind.name}"
+		e.created=self.created_at
+		e.url = "http://bas/appointments/#{self.id}"
+		e.last_modified = self.updated_at
+		e
+	end
+
 	#spits out a hash that will be piped through to be nicely displayed on a calendar
 	def calendarify(f,highlight=false)
 		slot = Slot.find(self.slot_id)
-		puts "Slot #{slot.id}"
 		bk = Bookable.find(slot.bookable_id)
-		puts "Bookable #{bk.id}"
-		#puts "Current bk #{f.bookable.id}"
 		r={}
 		r[:id] = self.id
 		r[:start] = self.start.iso8601
 		r[:end] = self.end.iso8601
 		r[:allDay] = false
 		if f.admin?
-			r[:title] = "#{self.user.name} with #{bk.user.name ? bk.user.name : bk.user.username}"
+			r[:title] = "#{self.user.name} with #{bk.user.name ? bk.user.name : bk.user.username} (#{self.kind.name})"
 			r[:url] = "/appointments/#{self.id}"
 			r[:description] = self.kind.name
 			if highlight

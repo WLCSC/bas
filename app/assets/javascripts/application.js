@@ -7,3 +7,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require fullcalendar
+//= require jquery-ui
+//= require autocomplete-rails

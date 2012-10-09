@@ -16,8 +16,8 @@ def ldap_login user,pass
 	end
 end
 
-def ldap_populate u, user, pass
-	if l = SimpleLdapAuthenticator.valid?(user,pass)[0]
+def ldap_populate u, user, pass=nil
+	if l = (pass ? SimpleLdapAuthenticator.valid?(user,pass)[0] : ldap_search(user))
 		u.username = user
 		u.name = l['givenname'][0].to_s + " " + l['sn'][0].to_s
 		u.administrator = true if(l[:memberof].include? APP_CONFIG[:ldap_domain_administrator_ou] || l[:department] == "Guidance")
@@ -27,9 +27,30 @@ def ldap_populate u, user, pass
 		false
 	end
 end
+
+def ldap_named_populate user
+	u = User.new
+	if l = ldap_name_search(user)
+		u.username = user
+		u.name = l['givenname'][0].to_s + " " + l['sn'][0].to_s
+		u.administrator = false
+		u.save
+		u
+	else
+		false
+	end
+end
 	
 def ldap_search user
 	if l = SimpleLdapAuthenticator.search(user)
+		l[0]
+	else
+		nil
+	end
+end
+
+def ldap_name_search name
+	if l = SimpleLdapAuthenticator.name_search(name)
 		l[0]
 	else
 		nil

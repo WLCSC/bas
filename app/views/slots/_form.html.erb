@@ -27,6 +27,10 @@
     <%= f.label :end_time %><br />
     <%= select_time Time.now, :prefix => 'endt' %>
   </div>
+  <div class="field">
+    <%= f.label :special %><br />
+    <%= f.check_box :special %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

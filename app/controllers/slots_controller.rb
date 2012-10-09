@@ -15,6 +15,8 @@ before_filter :check_for_admin
   # GET /slots/1.json
   def show
     @slot = Slot.find(params[:id])
+    @bookable = Bookable.find(@slot.bookable_id)
+    @user = User.find(@bookable.user_id)
 
     respond_to do |format|
       format.html # show.html.erb

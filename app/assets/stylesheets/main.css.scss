@@ -25,6 +25,10 @@ h2 {
 	margin-bottom: 20px;
 	padding: 15px 10px 15px 10px;
 	text-align: center;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .5);
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .5); 
 }
 
 #calendar {
@@ -69,7 +73,7 @@ h2 {
 	width: 250px;
 	margin: auto;
 	padding: 10px;
-	background-color: #052d6e;
+	background-color: rgba(05,45,110,0.5);
 	color: #fff;
 	text-align: center;
 }

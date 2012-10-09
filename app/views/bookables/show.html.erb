@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <table width="100%">
 <tr>
 <td><div id="calendar"></div></td>
@@ -18,25 +17,32 @@
 	  </ul>
 	</div>
   <% end %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
+  
   <%= f.hidden_field :bookable_id, :value => @bookable.id %>
   <% if current_user.admin? %>
 	<div class="field">
-	<%= f.label :user %><br />
-	<%= f.select :user_id, User.all.map{|s| [s.name, s.id]} %>
-  </div>
+		<%= f.label :user, "Name".html_safe %><br />
+	<%= f.autocomplete_field :user_name, autocomplete_user_name_appointments_path, :value => current_user.name %>
+</div>
+<% else %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
   <% end %>
   <div class="field">
 		<%= f.label :date %><br />
 		<%= select_date Date.today, :prefix => :date %>
 	</div>
-  <div class="field">
+	<div class="field">
+		<% @slots = current_user.administrator ? @bookable.slots.map{|s| ["#{s.pretty_start} - #{s.pretty_end}", s.id]} : @bookable.slots.where(:special => false).map{|s| ["#{s.pretty_start} - #{s.pretty_end}", s.id]} %>
 	<%= f.label :time %><br />
-	<%= f.select :slot_id, @bookable.slots.map{|s| ["#{s.pretty_start} - #{s.pretty_end}", s.id]} %>
+	<%= f.select :slot_id,  @slots%>
   </div>
   <div class="field">
 	<%= f.label :type %><br />
-	<%= f.select :kind_id, Kind.all.sort{|a,b| a.name <=> b.name}.map{|k| [k.name, k.id]} %>
+	<%= f.select :kind_id, options_for_select(Kind.all.map{|k| [k.name, k.id]}, 3) %>
+</div>
+<div class="field">
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes, :size => '20x5' %>
   </div>
   <div class="actions">
 	<%= f.submit :confirm => "Are you sure?" %>
@@ -58,6 +64,25 @@
 	<%= submit_tag "OK" %>
 <% end %>
 </div>
+<div id="block_off">
+<h2>Clear Appointments</h2>
+<%= form_tag '/bookables/clear' do %>
+	<%= hidden_field_tag :bookable_id, @bookable.id %>
+	<label>Start</label> <%= datetime_select :block, :begin %><br>
+	<label>End</label> <%= datetime_select :block, :stop %><br/>
+	<%= submit_tag "OK" %>
+<% end %>
+</div>
+<div id="block_off">
+<h2>Create Recurring Appointments</h2>
+<%= form_tag '/bookables/recur' do %>
+	<%= hidden_field_tag :bookable_id, @bookable.id %>
+	<label>Start</label> <%= date_select :block, :begin %><br>
+	<label>End</label> <%= date_select :block, :stop %><br/>
+	<label>Slot</label> <%= select_tag :slot_id, options_from_collection_for_select(@bookable.slots, "id", "pretty_range") %>
+	<%= submit_tag "OK" %>
+<% end %>
+</div>
 <% else %>
 <div id="contact">
 	<h2>Send Email to <%= @bookable.user.name ? @bookable.user.name : @bookable.user.username %></h2>
@@ -66,7 +91,8 @@
 		<%= hidden_field_tag :target, @bookable.user.id %>
 		<%= submit_tag "Send" %>
 	<% end %>
-</div>	
+</div>
+
 <%end%>
 
 

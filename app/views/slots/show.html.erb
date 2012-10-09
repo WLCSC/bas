@@ -7,7 +7,12 @@
 
 <p>
   <b>Bookable:</b>
-  <%= @slot.bookable_id %>
+  <%= link_to @user.name, @user.bookable  %>
+</p>
+
+<p>
+  <b>Special:</b>
+  <%= @slot.special ? "Yes" : "No" %>
 </p>
 
 <p>From <%= @slot.pretty_start %> to <%= @slot.pretty_end %>.</p>

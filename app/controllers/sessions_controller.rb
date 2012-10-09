@@ -9,16 +9,18 @@ class SessionsController < ApplicationController
 		user = User.find_by_username(params[:username])
 		if user && user.name
 			session[:user_id] = user.id
+			flash[:notice] = "Logged in!"
 		elsif user
 			user = ldap_populate(user, params[:username], params[:password])
+			flash[:notice] = "Welcome!"
 		else
 			user = ldap_populate(User.new,params[:username], params[:password])
 			session[:user_id] = user.id
+			flash[:notice] = "Welcome to BAS!"
 		end
-		flash[:notice] = "Logged in!"
 		redirect_to '/'
 	else
-		flash[:alert] = "Invalid login."
+		flash[:notice] = "Invalid login."
 		redirect_to '/'
 	end
   end

@@ -30,120 +30,147 @@
 #        session[:username] = params[:username]
 #      end
 #    end
-class SimpleLdapAuthenticator
-  class << self
-    @servers = ['127.0.0.1']
-    @use_ssl = false
-    @login_format = '%s'
-    attr_accessor :servers, :use_ssl, :port, :login_format, :logger, :connection, :ldap_library
-    
-    # Load the required LDAP library, either 'ldap' or 'net/ldap'
-    def load_ldap_library
-      return if @ldap_library_loaded
-      if @ldap_library
-        if @ldap_library == 'net/ldap'
-          require 'net/ldap'
-        else
-          require 'ldap'
-          require 'ldap/control'
-        end
-      else
-        begin
-          require 'ldap'
-          require 'ldap/control'
-          @ldap_library = 'ldap'
-        rescue LoadError
-          require 'net/ldap'
-          @ldap_library = 'net/ldap'
-        end
-      end
-      @ldap_library_loaded = true
-    end
-    
-    # The next LDAP server to which to connect
-    def server
-      servers[0]
-    end
-    
-    # The connection to the LDAP server.  A single connection is made and the
-    # connection is only changed if a server returns an error other than 
-    # invalid password.
-    def connection
-      return @connection if @connection
-      load_ldap_library
-	  if @ldap_library == 'net/ldap'
-		puts "Using the library!"
-		@connection = Net::LDAP.new(:host=>server, :port=>(port), :encryption=>(:simple_tls if use_ssl))
-      else
-        @connection = (use_ssl ? Net::LDAP::SSLConn : Net::LDAP::Conn).new(server, port)
-      end
-    end
-    
-    # The port to use.  Defaults to 389 for LDAP and 636 for LDAPS.
-    def port
-      @port ||= use_ssl ? 636 : 389
-    end
-    
-    # Disconnect from current LDAP server and use a different LDAP server on the
-    # next authentication attempt
-    def switch_server
-      self.connection = nil
-      servers << servers.shift
-    end
-    
-    # Check the validity of a login/password combination
-    def valid?(login, password)
-		cn = "#{APP_CONFIG[:ldap_domain_login]}\\#{login}"
-		#puts ":>#{@ldap_library}"
-		@ldap_library = 'net/ldap'
-      if @ldap_library == 'net/ldap'
-		#puts 'Using Net::Ldap'
-        connection.authenticate(cn, password.to_s)
-        begin
-          if connection.bind
-              logger.info("Authenticated #{login.to_s} by #{server}") if logger
-              connection.search(:base => APP_CONFIG[:ldap_user_search_base], :filter => Net::LDAP::Filter.eq('samaccountname', login))
-            else
-              logger.info("Error attempting to authenticate #{login.to_s} by #{server}: #{connection.get_operation_result.code} #{connection.get_operation_result.message}") if logger
-              switch_server unless connection.get_operation_result.code == 49
-              false
-            end
-        rescue Net::LDAP::LdapError => error
-          logger.info("Error attempting to authenticate #{login.to_s} by #{server}: #{error.message}") if logger
-          switch_server
-          false
-        end
-      else
-        connection.unbind if connection.bound?
-        begin
-          connection.bind(login_format % login.to_s, password.to_s)
-          connection.unbind
-          logger.info("Authenticated #{login.to_s} by #{server}") if logger
-          true
-        rescue Net::LDAP::LdapError => error
-          connection.unbind if connection.bound?
-          logger.info("Error attempting to authenticate #{login.to_s} by #{server}: #{error.message}") if logger
-          switch_server unless error.message == 'Invalid credentials'
-          false
-        end
-      end
-    end
-  
-	def search(login)
-		connection.authenticate("#{APP_CONFIG[:ldap_domain_login]}\\#{APP_CONFIG[:ldap_search_user]}", APP_CONFIG[:ldap_search_password])
-		begin
-          if connection.bind
-              connection.search(:base => APP_CONFIG[:ldap_user_search_base], :filter => Net::LDAP::Filter.eq('samaccountname', login))
-            else
-              logger.info("Error attempting to authenticate #{login.to_s} by #{server}: #{connection.get_operation_result.code} #{connection.get_operation_result.message}") if logger
-              switch_server unless connection.get_operation_result.code == 49
-              false
-            end
-        rescue Net::LDAP::LdapError => error
-          logger.info("Error attempting to authenticate #{login.to_s} by #{server}: #{error.message}") if logger
-          switch_server
-          false
-        end
+#
+class Net::LDAP::Entry
+	def to_s
+		"LDAP Entry(#{self.samaccountname.first})"
 	end
-  end
+end
+
+
+class SimpleLdapAuthenticator
+	class << self
+		@servers = ['127.0.0.1']
+		@use_ssl = false
+		@login_format = '%s'
+		attr_accessor :servers, :use_ssl, :port, :login_format, :logger, :connection, :ldap_library
+
+		# Load the required LDAP library, either 'ldap' or 'net/ldap'
+		def load_ldap_library
+			return if @ldap_library_loaded
+			if @ldap_library
+				if @ldap_library == 'net/ldap'
+					require 'net/ldap'
+				else
+					require 'ldap'
+					require 'ldap/control'
+				end
+			else
+				begin
+					require 'ldap'
+					require 'ldap/control'
+					@ldap_library = 'ldap'
+				rescue LoadError
+					require 'net/ldap'
+					@ldap_library = 'net/ldap'
+				end
+			end
+			@ldap_library_loaded = true
+		end
+
+		# The next LDAP server to which to connect
+		def server
+			servers[0]
+		end
+
+		# The connection to the LDAP server.  A single connection is made and the
+		# connection is only changed if a server returns an error other than 
+		# invalid password.
+		def connection
+			return @connection if @connection
+			load_ldap_library
+			if @ldap_library == 'net/ldap'
+				puts "Using the library!"
+				@connection = Net::LDAP.new(:host=>server, :port=>(port), :encryption=>(:simple_tls if use_ssl))
+			else
+				@connection = (use_ssl ? Net::LDAP::SSLConn : Net::LDAP::Conn).new(server, port)
+			end
+		end
+
+		# The port to use.  Defaults to 389 for LDAP and 636 for LDAPS.
+		def port
+			@port ||= use_ssl ? 636 : 389
+		end
+
+		# Disconnect from current LDAP server and use a different LDAP server on the
+		# next authentication attempt
+		def switch_server
+			self.connection = nil
+			servers << servers.shift
+		end
+
+		# Check the validity of a login/password combination
+		def valid?(login, password)
+			cn = "#{APP_CONFIG[:ldap_domain_login]}\\#{login}"
+			#puts ":>#{@ldap_library}"
+			@ldap_library = 'net/ldap'
+			if @ldap_library == 'net/ldap'
+				#puts 'Using Net::Ldap'
+				connection.authenticate(cn, password.to_s)
+				begin
+					if connection.bind
+						logger.info("Authenticated #{login.to_s} by #{server}") if logger
+						connection.search(:base => APP_CONFIG[:ldap_user_search_base], :filter => Net::LDAP::Filter.eq('samaccountname', login))
+					else
+						logger.info("Error attempting to authenticate #{login.to_s} by #{server}: #{connection.get_operation_result.code} #{connection.get_operation_result.message}") if logger
+						switch_server unless connection.get_operation_result.code == 49
+						false
+					end
+				rescue Net::LDAP::LdapError => error
+					logger.info("Error attempting to authenticate #{login.to_s} by #{server}: #{error.message}") if logger
+					switch_server
+					false
+				end
+			else
+				connection.unbind if connection.bound?
+				begin
+					connection.bind(login_format % login.to_s, password.to_s)
+					connection.unbind
+					logger.info("Authenticated #{login.to_s} by #{server}") if logger
+					true
+				rescue Net::LDAP::LdapError => error
+					connection.unbind if connection.bound?
+					logger.info("Error attempting to authenticate #{login.to_s} by #{server}: #{error.message}") if logger
+					switch_server unless error.message == 'Invalid credentials'
+					false
+				end
+			end
+		end
+
+		def search(login)
+			connection.authenticate("#{APP_CONFIG[:ldap_domain_login]}\\#{APP_CONFIG[:ldap_search_user]}", APP_CONFIG[:ldap_search_password])
+			begin
+				if connection.bind
+					connection.search(:base => APP_CONFIG[:ldap_user_search_base], :filter => Net::LDAP::Filter.eq('samaccountname', login))
+				else
+					logger.info("Error attempting to authenticate #{login.to_s} by #{server}: #{connection.get_operation_result.code} #{connection.get_operation_result.message}") if logger
+					switch_server unless connection.get_operation_result.code == 49
+					false
+				end
+			rescue Net::LDAP::LdapError => error
+				logger.info("Error attempting to authenticate #{login.to_s} by #{server}: #{error.message}") if logger
+				switch_server
+				false
+			end
+		end
+
+		def name_search(name)
+			connection.authenticate('wlcsc\\ldapuser', 'g90-Lqtuxdsa3.')
+			name.match(/(\w+) ([\w -]+)/)
+			formatted_name = $2 + ", " + $1
+			begin
+				if connection.bind
+					connection.search(:base => 'dc=wlcsc, dc=k12, dc=in, dc=us', :filter => Net::LDAP::Filter.eq('name', formatted_name))
+				else
+					logger.info("Error attempting to authenticate #{login.to_s} by #{server}: #{connection.get_operation_result.code} #{connection.get_operation_result.message}") if logger
+					switch_server unless connection.get_operation_result.code == 49
+					false
+				end
+			rescue Net::LDAP::LdapError => error
+				logger.info("Error attempting to authenticate #{login.to_s} by #{server}: #{error.message}") if logger
+				switch_server
+				false
+			end
+		end
+	end
 end

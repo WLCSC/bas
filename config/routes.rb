@@ -1,17 +1,25 @@
 Guidance::Application.routes.draw do
 
+  get "multiview/new"
+
+  get "multiview/show"
+
   get '/bookables/:id/events' => "bookables#events"
   get '/appointments/for/:id' => "appointments#for"
   get '/sessions/destroy' => 'sessions#destroy'
   post '/users/force' => 'users#force'
   post '/bookables/contact_email' => 'bookables#contact_email'
   post '/bookables/block' => 'bookables#block'
+  post '/bookables/clear' => 'bookables#clear'
+  post '/bookables/recur' => 'bookables#recur'
 
   resources :users
 
   resources :kinds
 
-  resources :appointments
+  resources :appointments do
+	  get :autocomplete_user_name, :on => :collection
+  end
 
   resources :bookables do 
 	resources :appointments

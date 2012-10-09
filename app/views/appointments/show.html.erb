@@ -23,8 +23,16 @@
 <p>
   <b>When:</b>
   <%= @appointment.start.strftime("%A, %B %d %Y</br> %I:%M %P").html_safe %>
+  </p>
+
+<p>
+  <b>Notes:</b>
+  <%= @appointment.notes %>
 </p>
-<% if current_user.admin? || @appointment.user == current_user %> <div class="big_button"><%= link_to 'Cancel', appointment_path(@appointment), :method => :delete, :confirm => "Are you sure?" %></div><% end %>
+
+<div class="big_button"><%= link_to "Export to iCal", appointment_path(@appointment, :format => :ics)%></div>
+</p>
+<% if current_user.admin? || @appointment.user == current_user || @appointment.bookable.user == current_user %> <div class="big_button"><%= link_to 'Cancel', appointment_path(@appointment), :method => :delete, :confirm => "Are you sure?" %></div><% end %>
 <div class="big_button"><%= link_to 'Back', root_path %></div></div>
 
 
@@ -32,3 +40,9 @@
 </tr>
 </table>
 <%= calendar_script_tag "appointments/for/#{current_user.id}.json?h=#{@appointment.id}" %>
+
+<%= javascript_tag do %>
+	$(document).ready(function() {
+	$('#calendar').fullCalendar('gotoDate',<%= @appointment.start.year %>,<%= @appointment.start.month-1 %>,<%= @appointment.start.day %>);
+	});
+<% end %>

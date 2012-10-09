@@ -8,7 +8,7 @@ class Slot < ActiveRecord::Base
 	has_one :owner, :through => :bookable, :class_name => 'User'
 	
 	def prep_times
-		if self.start && self.end
+		if self.start && self.endt
 			self.start_time = (self.start.split('-')[4].to_i * 60) + (self.start.split('-')[3].to_i * 60 * 60)
 			self.end_time = (self.endt.split('-')[4].to_i * 60) + (self.endt.split('-')[3].to_i * 60 * 60)
 		end
@@ -34,6 +34,10 @@ class Slot < ActiveRecord::Base
 	
 	def end_for(day)
 		(day.to_time.beginning_of_day + self.end_time).to_datetime
+	end
+
+	def pretty_range
+		"#{pretty_start} - #{pretty_end}"
 	end
 
 end

@@ -15,10 +15,18 @@ class User < ActiveRecord::Base
 			Appointment.where(:user_id => self.id)
 		end
 	end
+
+	def next_appointments
+		if bookable
+			(Appointment.where(:user_id => self.id).where('start > ?', Time.now) + Appointment.where(:slot_id => bookable.slots).where('start > ?', Time.now)).uniq
+		else
+			Appointment.where(:user_id => self.id).where('start > ?', Time.now)
+		end
+	end
 	
 	def today_appointments
 		if bookable
-			(Appointment.where(:user_id => self.id).where(:start => Time.now.beginning_of_day...Time.now.end_of_day) + Appointment.where(:slot_id => bookable.slots).where(:start => Time.now.beginning_of_day...Time.now.end_of_day) ).uniq
+			(Appointment.where(:user_id => self.id).where(:start => Time.now.beginning_of_day...(Time.now.end_of_day + 2.days)) + Appointment.where(:slot_id => bookable.slots).where(:start => Time.now.beginning_of_day...Time.now.end_of_day) ).uniq
 		else
 			Appointment.where(:user_id => self.id).where(:start => Time.now.beginning_of_day...Time.now.end_of_day)
 		end

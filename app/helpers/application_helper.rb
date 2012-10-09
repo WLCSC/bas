@@ -10,7 +10,7 @@ function pad2(number) {
 	if bookable
 		 r += "
 			slots = [
-				#{bookable.slots.map{|s| "[#{s.id}, #{s.start_time}, #{s.end_time}]"}.join(", \n")}
+				#{current_user.administrator ? bookable.slots.map{|s| "[#{s.id}, #{s.start_time}, #{s.end_time}]"}.join(", \n") : bookable.slots.where(:special => false).map{|s| "[#{s.id}, #{s.start_time}, #{s.end_time}]"}.join(", \n")}
 			];
 		 "
 	end

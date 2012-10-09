@@ -25,6 +25,10 @@
 <p>
   <b>At:</b>
   <%= @appointment.start.strftime("%A, %B %d %Y, %I:%M %P")%>
+  </p>
+  <p>
+  <b>Notes:</b>
+  <%= @appointment.notes %>
 </p>
   </body>
 </html>

@@ -25,7 +25,7 @@ function timerIncrement() {
         window.location = "http://"+window.location.host+"/sessions/destroy"
     }
 }
-  <% end unless (current_user && current_user.bookable) || !(current_user) %>
+  <% end unless (current_user && current_user.bookable) || (current_user && current_user.administrator) || !(current_user) %>
   <%= csrf_meta_tags %>
 </head>
 <body>

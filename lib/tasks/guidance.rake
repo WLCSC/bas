@@ -3,3 +3,8 @@ task :deliver_digests => :environment do
 		AppointmentMailer.daily_digest(b.user).deliver
 	end
 end
+
+task :test_digest => :environment do
+	b = User.first.bookable
+	AppointmentMailer.daily_digest(b.user).deliver
+end

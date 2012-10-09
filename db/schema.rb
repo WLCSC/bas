@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115140006) do
+ActiveRecord::Schema.define(:version => 20120823164232) do
 
   create_table "appointments", :force => true do |t|
     t.integer  "user_id"
@@ -21,7 +21,11 @@ ActiveRecord::Schema.define(:version => 20111115140006) do
     t.datetime "end"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "notes"
   end
+
+  add_index "appointments", ["slot_id"], :name => "slot_id"
+  add_index "appointments", ["user_id"], :name => "user_id"
 
   create_table "bookables", :force => true do |t|
     t.integer  "user_id"
@@ -32,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20111115140006) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
   end
+
+  add_index "bookables", ["user_id"], :name => "user_id"
 
   create_table "kinds", :force => true do |t|
     t.string   "name"
@@ -46,7 +52,12 @@ ActiveRecord::Schema.define(:version => 20111115140006) do
     t.integer  "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "special"
   end
+
+  add_index "slots", ["bookable_id"], :name => "bookable_id"
+  add_index "slots", ["end_time"], :name => "end_time"
+  add_index "slots", ["start_time"], :name => "start_time"
 
   create_table "users", :force => true do |t|
     t.string   "username"
