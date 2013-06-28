@@ -1,0 +1,13 @@
+<%= form_tag '/multiview/show', :method => 'get' do %>
+<table style="width: 60%; margin: auto;">
+
+<% @bookables.each do |bookable| %>
+	<tr>
+	<td><%= (bookable.avatar.file? ? image_tag(bookable.avatar.url(:thumb)) : "No Picture") %></td>
+	<td><%= (bookable.user.name ? bookable.user.name : bookable.user.username)%></td>
+	<td><%= check_box_tag 'BK[]', bookable.id %></td>
+  </tr>
+<% end %>
+</table>
+<%= submit_tag "Show Selected Calendars" %>
+<% end %>

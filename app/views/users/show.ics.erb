@@ -1,0 +1,7 @@
+<% @calendar=Icalendar::Calendar.new %>
+<% @user.appointments.each do |appointment|
+	@calendar.add appointment.to_ical 
+end %>
+<% @calendar.publish %>
+<%= @calendar.to_ical %>
+

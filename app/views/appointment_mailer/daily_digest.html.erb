@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	</head>
+	<body>
+		<h2>Here's a list of your upcoming appointments:</h2>
+		<% @appointments.each do |appointment|%>
+			<p>
+			"<%= appointment.kind.name %>" appointment with <%= appointment.user.name %> at <%= appointment.start.strftime("%A, %B %d %Y, %I:%M %P")%>
+			</p>
+			<p>
+			<b>Notes:</b>
+			<%= appointment.notes || "- None -" %>
+			</p>
+			<hr/>
+		<% end %>
+	</body>
+</html>
